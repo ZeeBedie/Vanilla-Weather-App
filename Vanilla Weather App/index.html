@@ -9,41 +9,44 @@
 </head>
 <body>
   <div class="weather-app">
-  <div class="border">
-  <div class="container">
-    <div class="row">
-<div class="col-md-2">
-  <h1>London</h1>
-  <ul>
-    <li>Monday 20:34</li>
-    <li>raining</li>
-  </ul>
-  <img src="" alt="raining"/>
-</div>
+    <div class="border">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <h1>London</h1>
+            <ul>
+              <li>Monday 20:34</li>
+              <li>raining</li>
+            </ul>
+            <div class="d-flex flex-column align-items-center">
+              <img src="" alt="raining" id="icon"/>
+              <strong class="temperature">19<small class="units">&degC|&degF</small></strong> 
+            </div>
+          </div>
 
-<div class="col-md-6">
-  <div class="row">
-    <div class="col-md-4">
-     
-    </div>
-    <div class="col-md-8">
-      <h1>19&deg; 66.2F</h1>
-      <ul>
-        <li>precipitation: 60%</li>
-        <li>Humidity: 40%</li>
-        <li>Wind Speed: 30km</li>
-      </ul>
-      <small>
-        <a href=" https://github.com/ZeeBedie/Vanilla-Weather-App " target="_blank">Open source code by Zuri Findey</a>
-         </small>
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-4">
+                <!-- Content for the inner column -->
+              </div>
+              <div class="col-md-8">
+                <ul>
+                  <li>precipitation: 60%</li>
+                  <li>Humidity: 40%</li>
+                  <li>Wind Speed: 30km</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-</div>
-</div>
-</div>
-</div>
- 
+
+  <small>
+    <a href="https://github.com/ZeeBedie/Vanilla-Weather-App" target="_blank">Open source code by Zuri Findey</a>
+  </small>
+
   <script src="src/app.js"></script>
 </body>
 </html>
