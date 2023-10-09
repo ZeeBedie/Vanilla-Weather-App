@@ -47,7 +47,11 @@ li {
     margin-right: 10px;
   }
 
-.temperature {
+  .form-control {
+    width: 300px;
+  }
+
+  .temperature {
   color: rgb( 33,33,33);
   font-size: 40px;
   font-weight: 400;
