@@ -4,19 +4,31 @@ function displayTemperature(response) {
     const cityElement = document.querySelector('#city');
     const descriptionElement = document.querySelector('#description');
     const humidityElement = document.querySelector('#humidity');
-    const windElement = document.querySelector('#wind'); // Define windElement
+    const windElement = document.querySelector('#wind');
+    const dateElement = document.querySelector('#date');
 
     const temperature = response.data.temperature.current;
     const cityName = response.data.city;
     const weatherDescription = response.data.condition.description;
     const humidity = response.data.temperature.humidity;
-    const wind = response.data.wind.speed; // Corrected wind access
+    const wind = response.data.wind.speed;
+
+    // Get the current date and format it
+    const currentDate = new Date();
+    const options = {
+      weekday: 'long', // Display the full weekday name
+      hour: 'numeric', // Display the hour in 12-hour format
+      minute: 'numeric', // Display the minutes
+      hour12: true, // Use 12-hour format with AM/PM
+    };
+    const formattedDate = currentDate.toLocaleString(undefined, options);
 
     temperatureElement.innerHTML = Math.round(temperature);
     cityElement.innerHTML = cityName;
     descriptionElement.innerHTML = weatherDescription;
-    humidityElement.innerHTML = `Humidity: ${humidity}%`;
-    windElement.innerHTML = `Wind Speed: ${wind} m/s`; // Use template literals for wind speed
+    humidityElement.innerHTML = `${humidity}`;
+    windElement.innerHTML = `${wind} m/s`;
+    dateElement.innerHTML = `${formattedDate}`;
   } catch (error) {
     console.error("Error handling API response:", error);
   }
