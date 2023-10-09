@@ -6,6 +6,7 @@ function displayTemperature(response) {
     const humidityElement = document.querySelector('#humidity');
     const windElement = document.querySelector('#wind');
     const dateElement = document.querySelector('#date');
+    const iconElement = document.querySelector('#icon');
 
     const temperature = response.data.temperature.current;
     const cityName = response.data.city;
@@ -13,22 +14,26 @@ function displayTemperature(response) {
     const humidity = response.data.temperature.humidity;
     const wind = response.data.wind.speed;
 
-    // Get the current date and format it
+    
     const currentDate = new Date();
     const options = {
-      weekday: 'long', // Display the full weekday name
-      hour: 'numeric', // Display the hour in 12-hour format
-      minute: 'numeric', // Display the minutes
-      hour12: true, // Use 12-hour format with AM/PM
+      weekday: 'long', 
+      hour: 'numeric', 
+      minute: 'numeric', 
+      hour12: true, 
     };
     const formattedDate = currentDate.toLocaleString(undefined, options);
 
     temperatureElement.innerHTML = Math.round(temperature);
     cityElement.innerHTML = cityName;
     descriptionElement.innerHTML = weatherDescription;
-    humidityElement.innerHTML = `${humidity}`;
+    humidityElement.innerHTML = `${humidity}%`;
     windElement.innerHTML = `${wind} m/s`;
     dateElement.innerHTML = `${formattedDate}`;
+
+    
+    const iconUrl = response.data.condition.icon_url;
+    iconElement.setAttribute('src', iconUrl);
   } catch (error) {
     console.error("Error handling API response:", error);
   }
