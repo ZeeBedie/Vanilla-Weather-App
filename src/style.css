@@ -62,9 +62,28 @@ li {
   top: -20px;
 }
 
-.col-md-2 {
-  color: rgb( 135, 135, 135);
-  font-size: 16px;
-  font-weight: 100;
-  line-height: 2px;
+.weather-forecast {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 13px;
 }
+
+.weather-forecast-date{
+  font-size: 16px;
+  color: rgb( 33,33,33);
+  opacity: 0.6;
+}
+
+.weather-forecast-temperatures{
+  font-size: 13px;
+  color: rgb( 33,33,33);
+}
+
+.weather-forecast-temperature-minimum{
+  font-size: 13px;
+  color: rgb( 33,33,33);
+  opacity: 0.5;
+}
+
+
+
