@@ -22,6 +22,7 @@ function displayTemperature(response) {
       minute: 'numeric',
       hour12: true,
     };
+    
     const formattedDate = currentDate.toLocaleString(undefined, options);
 
     temperatureElement.innerHTML = Math.round(temperature);
