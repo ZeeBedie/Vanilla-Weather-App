@@ -24,30 +24,32 @@ function displayTemperature(response) {
     };
 
     function displayForecast() {
-    const forecastElement = document.querySelector('#forecast');
-      
-    forecastElement.innerHTML = `
-    <div class="col-md-2">
-      <div class="weather-forecast-date">
-        Thurs
-      </div>
-      <img src="images/rain-image.png" alt="raining" width="22px" />
-      <div class="weather-forecast-temperature">
-        <span class="weather-forecast-temperature-maximum">
-          18&deg
-        </span>
-        <span class="weather-forecast-temperature-minimum">
-          12&deg
-        </span>
-      </div>
-    </div>
-  `;
-}
-    
+      const forecastElement = document.querySelector('#forecast');
+      let forecastHTML = '<div class="row">';
+      const days = ["Thurs", "Fri", "Sat", "Sun", "Mon", "Tues"];
+      days.forEach(function(day) {
+        forecastHTML += `
+          <div class="col-md-2">
+            <div class="weather-forecast-date">${day}</div>
+            <img src="images/rain-image.png" alt="raining" width="22px" />
+            <div class="weather-forecast-temperature">
+              <span class="weather-forecast-temperature-maximum">
+                18&deg
+              </span>
+              <span class="weather-forecast-temperature-minimum">
+                12&deg
+              </span>
+            </div>
+          </div>
+        `;
+      });
+      forecastHTML += '</div>';
+      forecastElement.innerHTML = forecastHTML;
+    }
 
     const formattedDate = currentDate.toLocaleString(undefined, options);
 
-    temperatureElement.innerHTML = Math.round(temperature);
+    temperatureElement.innerHTML = Math round(temperature);
     cityElement.innerHTML = cityName;
     descriptionElement.innerHTML = weatherDescription;
     humidityElement.innerHTML = `${humidity}%`;
@@ -66,7 +68,7 @@ function search(event) {
   const city = cityInputElement.value;
   const apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
 
-  displayForecast(); // Call the displayForecast function
+  displayForecast();
 
   axios.get(apiUrl, {
     headers: {
