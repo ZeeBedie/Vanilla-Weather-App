@@ -22,7 +22,29 @@ function displayTemperature(response) {
       minute: 'numeric',
       hour12: true,
     };
+
+    function displayForecast() {
+    const forecastElement = document.querySelector('#forecast');
+      
+    forecastElement.innerHTML = `
+    <div class="col-md-2">
+      <div class="weather-forecast-date">
+        Thurs
+      </div>
+      <img src="images/rain-image.png" alt="raining" width="22px" />
+      <div class="weather-forecast-temperature">
+        <span class="weather-forecast-temperature-maximum">
+          18&deg
+        </span>
+        <span class="weather-forecast-temperature-minimum">
+          12&deg
+        </span>
+      </div>
+    </div>
+  `;
+}
     
+
     const formattedDate = currentDate.toLocaleString(undefined, options);
 
     temperatureElement.innerHTML = Math.round(temperature);
@@ -43,6 +65,8 @@ function search(event) {
   const apiKey = "b50343183o490adctc2bad01bf0a4ae0";
   const city = cityInputElement.value;
   const apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
+
+  displayForecast(); // Call the displayForecast function
 
   axios.get(apiUrl, {
     headers: {
