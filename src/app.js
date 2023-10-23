@@ -1,9 +1,37 @@
 function displayTemperature(response) {
   try {
-    // Your existing code to display current weather data
+    const temperatureElement = document.querySelector("#temperatureid");
+    const cityElement = document.querySelector("#city");
+    const descriptionElement = document.querySelector("#description");
+    const humidityElement = document.querySelector("#humidity");
+    const windElement = document.querySelector("#wind");
+    const dateElement = document.querySelector("#date");
+    const iconElement = document.querySelector("#icon");
 
-    // Call the displayForecast function here
-    displayForecast();
+    const temperature = response.data.temperature.current;
+    const cityName = response.data.city;
+    const weatherDescription = response.data.condition.description;
+    const humidity = response.data.temperature.humidity;
+    const wind = response.data.wind.speed;
+    const iconUrl = response.data.condition.icon_url;
+
+    const currentDate = new Date();
+    const options = {
+      weekday: "long",
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    };
+
+    const formattedDate = currentDate.toLocaleString(undefined, options);
+
+    temperatureElement.innerHTML = Math.round(temperature);
+    cityElement.innerHTML = cityName;
+    descriptionElement.innerHTML = weatherDescription;
+    humidityElement.innerHTML = `${humidity}%`;
+    windElement.innerHTML = `${wind} m/s`;
+    dateElement.innerHTML = formattedDate;
+    iconElement.setAttribute("src", iconUrl);
   } catch (error) {
     console.error("Error handling API response:", error);
   }
@@ -11,31 +39,34 @@ function displayTemperature(response) {
 
 function displayForecast() {
   const forecastElement = document.querySelector("#forecast");
-  const days = ["Thurs", "Fri", "Sat", "Sun", "Mon"];
-  let forecastHTML = '<div class="row">';
-
-  days.forEach((day) => {
-    forecastHTML += `
-      <div class="col-md-2">
-        <div class="weather-forecast-date">
-          ${day}
-        </div>
-        <img src="images/rain-image.png" alt="raining" width="22px" />
-        <div class="weather-forecast-temperature">
-          <span class="weather-forecast-temperature-maximum">
-            18&deg
-          </span>
-          <span class="weather-forecast-temperature-minimum">
-            12&deg
-          </span>
-        </div>
-      </div>
-    `;
-  });
-
-  forecastHTML += "</div>";
-  forecastElement.innerHTML = forecastHTML;
+  const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  forecastElement.innerHTML = "";
+  for (let i = 0; i < daysOfWeek.length; i++) {
+    const dayElement = document.createElement("div");
+    dayElement.classList.add("col-md-2");
+  
+    forecastElement.innerHTML = `
+  <div class="col-md-2">
+    <div class="weather-forecast-date">
+      Thurs
+    </div>
+    <img src="images/rain-image.png" alt="raining" width="22px" />
+    <div class="weather-forecast-temperature">
+      <span class="weather-forecast-temperature-maximum">
+        18&deg
+      </span>
+      <span class="weather-forecast-temperature-minimum">
+        12&deg
+      </span>
+    </div>
+  </div>
+  forecastElement.appendChild(dayElement);
+  }
+`;
+  
 }
+displayForecast();
+
 
 function search(event) {
   event.preventDefault();
@@ -44,6 +75,8 @@ function search(event) {
   const city = cityInputElement.value;
   const apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
 
+  displayForecast(); // Call the displayForecast function
+
   axios
     .get(apiUrl, {
       headers: {
@@ -51,6 +84,7 @@ function search(event) {
       },
     })
     .then(displayTemperature);
+}
 }
 
 // Attach the event listener to the form
