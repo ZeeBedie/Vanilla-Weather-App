@@ -37,36 +37,39 @@ function displayTemperature(response) {
   }
 }
 
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data);
   const forecastElement = document.querySelector("#forecast");
-  const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-  forecastElement.innerHTML = "";
-  for (let i = 0; i < daysOfWeek.length; i++) {
-    const dayElement = document.createElement("div");
-    dayElement.classList.add("col-md-2");
+  const daysOfWeek = ["Thursday", "Friday", "Saturday", "Sunday", "Monday", "Tuesday"];
+  const weatherImages = ["rain-image.png", "sunny-image.png", "sunny-image.png", "cloudy-image.png", "rain-image.png", "sunny-image.png"];
+  const temperatureMax = [18, 20, 22, 19, 17, 21];
+  const temperatureMin = [12, 14, 16, 13, 11, 15];
   
-    forecastElement.innerHTML = `
-  <div class="col-md-2">
-    <div class="weather-forecast-date">
-      Thurs
-    </div>
-    <img src="images/rain-image.png" alt="raining" width="22px" />
-    <div class="weather-forecast-temperature">
-      <span class="weather-forecast-temperature-maximum">
-        18&deg
-      </span>
-      <span class="weather-forecast-temperature-minimum">
-        12&deg
-      </span>
-    </div>
-  </div>
-  forecastElement.appendChild(dayElement);
-  }
-`;
-  
-}
-displayForecast();
+  let forecastHTML = '<div class="row">';
 
+  for (let i = 0; i < daysOfWeek.length; i++) {
+    forecastHTML += `
+      <div class="col-md-2">
+        <div class="weather-forecast-date">${daysOfWeek[i]}</div>
+        <img src="images/${weatherImages[i]}" alt="weather" width="22px" />
+        <div class="weather-forecast-temperature">
+          <span class="weather-forecast-temperature-maximum">${temperatureMax[i]}&deg</span>
+          <span class="weather-forecast-temperature-minimum">${temperatureMin[i]}&deg</span>
+        </div>
+      </div>`;
+  }
+
+  forecastHTML += '</div>';
+  forecastElement.innerHTML = forecastHTML;
+}
+
+function getforecast(coordinates) {
+  console.log(coordinates);
+  const apiKey = "b50343183o490adctc2bad01bf0a4ae0";
+  const apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.lon}&lat=${coordinates.lat}&key=${apiKey}&units=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
+}
 
 function search(event) {
   event.preventDefault();
@@ -83,8 +86,11 @@ function search(event) {
         Authorization: `Bearer ${apiKey}`,
       },
     })
-    .then(displayTemperature);
-}
+    .then(function (response) {
+      // Call the getforecast function with the response data
+      getforecast(response.data.coordinates);
+      displayTemperature(response);
+    });
 }
 
 // Attach the event listener to the form
