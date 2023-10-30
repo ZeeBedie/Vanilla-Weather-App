@@ -5,6 +5,7 @@ body {
 }
 
 h1 {
+  font-family: Arial, Helvetica, sans-serif;
   color: #878787;
   font-size: 24px;
   font-weight: 100;
@@ -18,23 +19,24 @@ ul {
 
 li {
   list-style: none;
-  margin:0;
+  margin:0 auto;
   padding:0;
   color: rgb( 135, 135, 135);
   font-size: 16px;
   font-weight: 100;
-  line-height: 29px;
+  line-height: 19px;
   margin-bottom: 0;
   }
 
-  .weather-app{
-    max-width: 700px;
-    margin: 30px auto;
+  .weather_app {
+    max-width: 600px;
+    margin: 30px 0 auto;
     padding: 20px;
-    border: 1px solid #E5E6E8;
+    border: 1px solid rgb( 135, 135, 135) ;
     border-radius: 5px;
-  }
+   }
 
+  
   .d-flex.align-items-center {
     display: flex;
     align-items: center;
