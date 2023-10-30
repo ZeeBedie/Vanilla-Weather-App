@@ -11,9 +11,10 @@
 <body>
   <div class="container">
     <div class="weather_app">
-    <h1>
-      London
-    </h1>
+      <div class="overview">
+      <h1>
+        London
+      </h1>
       <ul>
         <li>
           Monday 8:00
@@ -22,13 +23,21 @@
           raining
         </li>
       </ul>
+    </div>
       <div class="row">
         <div class="col-6">
-          <img src="images/rain-image.png" 
-          alt="raining"
-          width="18px"
-          />
-          12&deg|&degF
+          <div class="d-flex weather-temperature">
+            <img src="images/rain-image.png" 
+            alt="raining"
+            width="24px"
+            id="icon"
+            />
+           <strong>12 
+            <span class="units">
+              &degC|<a href="#">&degF</a>
+            </span>
+          </strong> 
+          </div>
         </div>
         <div class="col-6">
           <ul>
@@ -41,15 +50,14 @@
             <li>
               Wind: 2km/h
             </li>
-
           </ul>
-
         </div>
       </div>
-       <small>
-        <a href="https://github.com/ZeeBedie/Vanilla-Weather-App" target="_blank">Open source code by Zuri Findey</a>
-      </small>
     </div>
- <script src="src/app.js"></script>
+    <small>
+      <a href="https://github.com/ZeeBedie/Vanilla-Weather-App" target="_blank">Open source code by Zuri Findey</a>
+    </small>
+  </div>
+  <script src="src/app.js"></script>
 </body>
 </html>

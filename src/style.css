@@ -1,7 +1,7 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
-  margin:20px;
-  padding:20px;
+  margin: 20px;
+  padding: 20px;
 }
 
 h1 {
@@ -13,55 +13,65 @@ h1 {
 }
 
 ul {
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
 }
 
 li {
   list-style: none;
-  margin:0 auto;
-  padding:0;
-  color: rgb( 135, 135, 135);
+  margin: 0; /* Removed "auto" */
+  padding: 0;
+  color: rgb(135, 135, 135);
   font-size: 16px;
   font-weight: 100;
-  line-height: 19px;
+  line-height: 19px; /* Adjusted line height */
   margin-bottom: 0;
-  }
+}
 
-  .weather_app {
-    max-width: 600px;
-    margin: 30px 0 auto;
-    padding: 20px;
-    border: 1px solid rgb( 135, 135, 135) ;
-    border-radius: 5px;
-   }
+.weather_app {
+  max-width: 600px;
+  margin: 30px 0 auto;
+  padding: 20px;
+  border: 1px solid rgb(135, 135, 135); /* Removed spaces inside "rgb()" */
+  border-radius: 5px;
+}
 
-  
-  .d-flex.align-items-center {
-    display: flex;
-    align-items: center;
-  }
+.overview {
+  margin-bottom: 20px;
+}
 
+.rain-image {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
 
-  .rain-image {
-    width:50px;
-    height:50px;
-    margin-right: 10px;
-  }
+.weather-temperature strong {
+  color: rgb(33, 33, 33); 
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 1;
+  margin-bottom: 10px;
+}
 
-
-  .temperature {
-  color: rgb( 33,33,33);
+.weather-temperature.units {
+  color: rgb(33, 33, 33); 
   font-size: 40px;
   font-weight: 400;
   line-height: 1;
   margin-bottom: 10px;
 }
 
+.weather-temperature img {
+  margin-right: 5px; 
+  height: 64px;
+  width: 64px;
+}
+
 .units {
-  font-size: 15px;
   position: relative;
-  top: -20px;
+  font-size: 16px;
+  top: -34px;
 }
 
 .weather-forecast {
@@ -70,22 +80,18 @@ li {
   font-size: 13px;
 }
 
-.weather-forecast-date{
+.weather-forecast-date {
   font-size: 16px;
-  color: rgb( 33,33,33);
-  opacity: 0.6;
+  color: rgb(33, 33, 33); 
 }
 
-.weather-forecast-temperatures{
+.weather-forecast-temperatures {
   font-size: 13px;
-  color: rgb( 33,33,33);
+  color: rgb(33, 33, 33); 
 }
 
-.weather-forecast-temperature-minimum{
+.weather-forecast-temperature-minimum {
   font-size: 13px;
-  color: rgb( 33,33,33);
+  color: rgb(33, 33, 33); 
   opacity: 0.5;
 }
-
-
-
