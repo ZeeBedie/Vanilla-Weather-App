@@ -5,7 +5,7 @@ function formatDate(timestamp) {
     hours = '0' + hours;
   }
   let minutes = date.getMinutes();
-  if (minutes <10) {
+  if (minutes < 10) {
     minutes = '0' + minutes;
   }
   
@@ -17,12 +17,12 @@ function formatDate(timestamp) {
     "Thursday", 
     "Friday", 
     "Saturday",
-  ]
-  let day = days [date.getDay()];
+  ];
+  let day = days[date.getDay()];
   return `${day} ${hours}:${minutes}`;
 }
 
-function displayTemperature(response) {
+function displayWeatherData(response) {
   let temperatureElement = document.querySelector("#temperature");
   let cityElement = document.querySelector("#city");
   let descriptionElement = document.querySelector("#description");
@@ -30,19 +30,35 @@ function displayTemperature(response) {
   let windElement = document.querySelector("#wind");
   let dateElement = document.querySelector("#date");
   let iconElement = document.querySelector("#icon");
-  temperatureElement.innerHTML = Math.round(response.data.temperature.current);
-  cityElement.innerHTML = response.data.city;
-  descriptionElement.innerHTML = response.data.condition.description;
-  humidityElement.innerHTML = response.data.temperature.humidity;
-  windElement.innerHTML = response.data.wind.speed;
-  dateElement.innerHTML = formatDate(response.data.time * 1000);
-  iconElement.setAttribute("src", `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`);
-  iconElement.setAttribute("alt", response.data.condition.description);
 
+  let weatherData = response.data;
+  
+  temperatureElement.innerHTML = Math.round(weatherData.temperature.current);
+  cityElement.innerHTML = weatherData.city;
+  descriptionElement.innerHTML = weatherData.condition.description;
+  humidityElement.innerHTML = weatherData.temperature.humidity;
+  windElement.innerHTML = weatherData.wind.speed;
+  dateElement.innerHTML = formatDate(weatherData.time * 1000);
+  iconElement.setAttribute("src", `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${weatherData.condition.icon}.png`);
+  iconElement.setAttribute("alt", weatherData.condition.description);
 }
 
-let apiKey = "b50343183o490adctc2bad01bf0a4ae0";
-let city = "London"
-let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
-console.log(apiUrl);
-axios.get(apiUrl).then(displayTemperature);
+function searchCity(city) {
+  let apiKey = "b50343183o490adctc2bad01bf0a4ae0";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayWeatherData).catch(function (error) {
+    console.error("API request error:", error);
+  });
+}
+
+function handleSearchSubmit(event) {
+  event.preventDefault();
+  let searchInput = document.querySelector("#search-form-input");
+  searchCity(searchInput.value);
+}
+
+let searchFormElement = document.querySelector("#search-form");
+searchFormElement.addEventListener("submit", handleSearchSubmit);
+
+// You can load weather data for a default city when the page loads
+searchCity("London");
