@@ -53,11 +53,6 @@ li {
   margin-bottom: 20px;
 }
 
-.rain-image {
-  width: 50px;
-  height: 50px;
-  margin-right: 10px;
-}
 
 .weather-temperature strong {
   color: rgb(33, 33, 33); 
@@ -94,17 +89,17 @@ li {
 }
 
 .weather-forecast-date {
-  font-size: 16px;
-  color: rgb(33, 33, 33); 
+font-size: 16px;
+color: black
 }
 
-.weather-forecast-temperatures {
+.weather-forecast-temperature-max {
   font-size: 13px;
-  color: rgb(33, 33, 33); 
+
 }
 
-.weather-forecast-temperature-minimum {
+.weather-forecast-temperature-min {
   font-size: 13px;
-  color: rgb(33, 33, 33); 
-  opacity: 0.5;
+  opacity: 0.6;
+
 }
