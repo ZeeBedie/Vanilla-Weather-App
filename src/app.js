@@ -57,31 +57,43 @@ function handleSearchSubmit(event) {
   searchCity(searchInput.value);
 }
 
-let forecast = document.querySelector("#forecast");
-forecast.innerHTML = `
-  <div class="weather-forecast">
-    <div class="row">
-      <div class="col-2">
-        <div class="weather-forecast-date">
-          Thursday
-          <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-night.png" alt="" width="36" />
-        </div>
-        <div class="weather-forecast-temperature">
-          <div>
-            <span class="weather-forecast-temperature-max">
-              18&deg
-            </span>
-            <span class="weather-forecast-temperature-min">
-              12&deg
-            </span>
+function displayForecast() {
+  let forecast = document.querySelector("#forecast");
+  let days = ['Tue', 'Wed', 'Thurs', 'Fri', 'Sat'];
+  let forecastHTML = "";
+
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+      <div class="weather-forecast">
+        <div class="row">
+          <div class="col-2">
+            <div class="weather-forecast-date">
+              ${day}
+              <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-night.png" alt="" width="36" />
+            </div>
+            <div class="weather-forecast-temperature">
+              <div>
+                <span class="weather-forecast-temperature-max">
+                  18&deg
+                </span>
+                <span class="weather-forecast-temperature-min">
+                  12&deg
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-`;
+    `;
+  });
+
+  forecast.innerHTML = forecastHTML;
+}
 
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
 searchCity("London");
+displayForecast();
