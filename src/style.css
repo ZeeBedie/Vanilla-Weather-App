@@ -81,24 +81,33 @@ li {
   font-size: 16px;
   top: -1px;
 }
+.weather-forecast-day {
+  display: inline-block; /
+  margin-right: 10px;
+  width: 100px;
+}
 
 .weather-forecast {
   margin-top: 20px;
   text-align: center;
   font-size: 13px;
+  display: flex; 
+  align-items: center;
 }
 
 .weather-forecast-date {
 font-size: 16px;
-color: black
+color: black;
+margin-right: 5px;
 }
 
 .weather-forecast-temperature-max {
   font-size: 13px;
-
+  
 }
 
 .weather-forecast-temperature-min {
   font-size: 13px;
   opacity: 0.6;
-}
+
+  }

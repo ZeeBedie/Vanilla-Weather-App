@@ -66,6 +66,7 @@ function displayForecast() {
     forecastHTML =
       forecastHTML +
       `
+      <div class="weather-forecast-day">
       <div class="weather-forecast">
         <div class="row">
           <div class="col-2">
@@ -74,9 +75,7 @@ function displayForecast() {
               <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-night.png" alt="" width="36" />
             </div>
             <div class="weather-forecast-temperature">
-              <div>
-                <span class="weather-forecast-temperature-max">
-                  18&deg
+                <span class="weather-forecast-temperature-max">18&deg
                 </span>
                 <span class="weather-forecast-temperature-min">
                   12&deg
@@ -85,6 +84,7 @@ function displayForecast() {
             </div>
           </div>
         </div>
+      </div>
       </div>
     `;
   });
