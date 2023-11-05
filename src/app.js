@@ -45,9 +45,18 @@ function displayWeatherData(response) {
 
 function searchCity(city) {
   let apiKey = "b50343183o490adctc2bad01bf0a4ae0";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayWeatherData).catch(function (error) {
+  let currentApiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+  let forecastApiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+  axios.get(currentApiUrl).then(displayWeatherData).catch(function (error) {
     console.error("API request error:", error);
+  
+    axios
+    .get(forecastApiUrl)
+    .then(displayForecast)
+    .catch(function (error) {
+      console.error("Forecast API request error:", error);
+    });
+
   });
 }
 
@@ -57,7 +66,16 @@ function handleSearchSubmit(event) {
   searchCity(searchInput.value);
 }
 
-function displayForecast() {
+function getForecast(city){
+  let apiKey = "b50343183o490adctc2bad01bf0a4ae0";
+  let apiUrl ='https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric';
+  console.log(apiUrl);
+
+}
+ 
+function displayForecast(response) {
+console.log(response);
+ 
   let forecast = document.querySelector("#forecast");
   let days = ['Tue', 'Wed', 'Thurs', 'Fri', 'Sat'];
   let forecastHTML = "";
@@ -74,7 +92,7 @@ function displayForecast() {
               ${day}
               <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-night.png" alt="" width="36" />
             </div>
-            <div class="weather-forecast-temperature">
+            <div class="weather-forecast-temperature" style ="display: flex;">
                 <span class="weather-forecast-temperature-max">18&deg
                 </span>
                 <span class="weather-forecast-temperature-min">
@@ -96,4 +114,5 @@ let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
 searchCity("London");
+getForecast("London");
 displayForecast();
