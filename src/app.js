@@ -41,24 +41,18 @@ function displayWeatherData(response) {
   dateElement.innerHTML = formatDate(weatherData.time * 1000);
   iconElement.setAttribute("src", `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${weatherData.condition.icon}.png`);
   iconElement.setAttribute("alt", weatherData.condition.description);
+
+  getForecast(response.data.city);
 }
 
 function searchCity(city) {
   let apiKey = "b50343183o490adctc2bad01bf0a4ae0";
   let currentApiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
-  let forecastApiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
-  axios.get(currentApiUrl).then(displayWeatherData).catch(function (error) {
-    console.error("API request error:", error);
   
-    axios
-    .get(forecastApiUrl)
-    .then(displayForecast)
-    .catch(function (error) {
-      console.error("Forecast API request error:", error);
-    });
+  axios.get(currentApiUrl).then(displayWeatherData);
+  
+  };
 
-  });
-}
 
 function handleSearchSubmit(event) {
   event.preventDefault();
@@ -66,15 +60,16 @@ function handleSearchSubmit(event) {
   searchCity(searchInput.value);
 }
 
-function getForecast(city){
-  let apiKey = "b50343183o490adctc2bad01bf0a4ae0";
-  let apiUrl ='https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric';
+function getForecast(city) {
+  let apiKey = "bd79ao40tde3dec118ca46bc3e6dd55f";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+  axios(apiUrl).then(displayForecast);
   console.log(apiUrl);
-
 }
+
  
 function displayForecast(response) {
-console.log(response);
+console.log(response.data);
  
   let forecast = document.querySelector("#forecast");
   let days = ['Tue', 'Wed', 'Thurs', 'Fri', 'Sat'];
@@ -114,5 +109,4 @@ let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
 searchCity("London");
-getForecast("London");
 displayForecast();
